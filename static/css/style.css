@@ -1,4 +1,4 @@
-/* --- 1. VARIABLES & THEMES --- */
+/* --- VARIABLES & THEMES --- */
 :root {
     --bg: #f8fafc;
     --text: #1e293b;
@@ -23,7 +23,7 @@
     --btntext: #1e293b;
 }
 
-/* --- 2. GLOBAL RESET --- */
+/* --- GLOBAL RESET --- */
 * { 
     box-sizing: border-box; 
     margin: 0; 
@@ -48,7 +48,7 @@ img, video {
     display: block; 
 }
 
-/* --- 3. REUSABLE COMPONENTS --- */
+/* --- REUSABLE COMPONENTS --- */
 .glass-card {
     background: var(--card-bg);
     backdrop-filter: blur(20px);
@@ -76,7 +76,7 @@ img, video {
     width: 100%; 
 }
 
-/* --- 4. NAVIGATION --- */
+/* --- NAVIGATION --- */
 nav {
     display: flex; 
     justify-content: space-between; 
@@ -90,8 +90,8 @@ nav {
 }
 .logo { 
     font-weight: 800; 
-    font-size: 1.7rem; 
-    letter-spacing: -0.8px; 
+    font-size: 2.0rem; 
+    letter-spacing: -0.1px; 
 }
 .accent { 
     color: var(--btncolor); 
@@ -114,17 +114,18 @@ nav {
     justify-content: center;
 }
 
-/* --- 5. HERO SECTION --- */
+/* --- HERO SECTION --- */
 .hero {
     position: relative;
-    padding: 40px 5% 40px; 
+    padding: 70px 5% 70px; 
     text-align: center;
-    min-height: 10vh;
+    min-height: 50vh;
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--hero-gradient); /* Fallback */
     overflow: hidden;
+    margin-bottom: 40px; 
 }
 .hero::before {
     content: '';
@@ -204,21 +205,7 @@ nav {
         typing-loop-2 10s steps(22, end) infinite;
 }
 
-/* --- 6. TITLE SECTION --- */
-.title {
-    padding: 20px 5% 20px; 
-    text-align: center;
-    background: var(--btncolor);
-    margin-bottom: 25px; 
-}
-.title h1 { 
-    font-size: clamp(1rem, 3vw, 2.5rem); 
-    font-weight: 700; 
-    line-height: 1.0;  
-    color: var(--btntext);
-}
-
-/* --- 7. MAIN CONTENT & SIDEBAR --- */
+/* --- MAIN CONTENT & SIDEBAR --- */
 .main-container { 
     display: flex; 
     gap: 40px; 
@@ -260,6 +247,8 @@ nav {
     font-size: 0.95rem; 
     opacity: 0.8; 
     margin-bottom: 25px; 
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
 }
 .skills-section {
     text-align: left;
@@ -298,7 +287,7 @@ nav {
 }
 .skill-progress {
     height: 100%;
-    background: var(--primary);
+    background: var(--btncolor);
     border-radius: 10px;
     position: relative;
     transition: width 1.5s cubic-bezier(0.1, 0.42, 0.41, 1);
@@ -315,7 +304,7 @@ nav {
     filter: blur(2px);
 }
 
-/* --- 8. PORTFOLIO TABS & GRID --- */
+/* --- PORTFOLIO TABS & GRID --- */
 .portfolio-section { 
     flex-grow: 1; 
     width: 100%; 
@@ -406,8 +395,7 @@ nav {
     transform: translateY(-2px);
 }
 
-
-/* --- 9. LOGIN & REQUEST FORMS --- */
+/* --- LOGIN & REQUEST FORMS --- */
 .centered-flex { 
     display: flex; 
     align-items: center; 
@@ -449,7 +437,7 @@ nav {
     border-color: var(--primary); 
 }
 
-/* --- 10. ADMIN DASHBOARD --- */
+/* --- ADMIN DASHBOARD --- */
 .mobile-nav-toggle {
     display: none;
     position: fixed;
@@ -465,6 +453,21 @@ nav {
     cursor: pointer;
     box-shadow: var(--shadow);
 }
+.admin-sidebar .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 20px;
+    border-radius: 25px;
+    color: var(--btntext);
+    font-weight: 600;
+    transition: 0.3s;
+}
+.admin-sidebar .nav-item:hover {
+    background: var(--primary);
+    color: var(--btncolor);
+}
+
 .admin-body {
     background-color: var(--bg);
     color: var(--text);
@@ -575,8 +578,7 @@ th {
     opacity: 0.6;
 }
 
-
-/* --- 11. FOOTER STYLES --- */
+/* --- FOOTER STYLES --- */
 .main-footer {
     padding: 40px 5% 60px;
     display: flex;
@@ -616,7 +618,7 @@ th {
     font-weight: 400;
 }
 
-/* --- 12. RESPONSIVE MEDIA QUERIES --- */
+/* --- RESPONSIVE MEDIA QUERIES --- */
 @media (max-width: 1024px) {
     .main-container { 
         flex-direction: column; 
@@ -632,9 +634,27 @@ th {
     }
 }
 @media (max-width: 992px) {
-    /* 2. Show Toggle Button */
     .mobile-nav-toggle {
         display: block;
+        position: fixed; /* Keep it fixed on the screen */
+        top: 0;         /* Align to the very top */
+        right: 0;       /* Align to the right */
+        left: 0;        /* Stretch across the top (optional, see below) */
+        width: 100%;    /* Makes it a top bar */
+        height: 60px;   /* Set a specific height */
+        border-radius: 0; /* Remove rounded corners for a bar look */
+        text-align: right; /* Align the icon to the right */
+        padding-right: 20px;
+        background: #1a1a1a; /* Match your sidebar color for consistency */
+        z-index: 2000;
+        border-bottom: 1px solid var(--border);
+    }
+
+    /* Adjust the main content so it doesn't hide under the fixed bar */
+    .admin-main {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 80px 15px 40px 15px; /* Ensure 80px top padding to clear the 60px bar */
     }
 
     /* 3. Transform Sidebar into an Overlay Drawer */
@@ -642,6 +662,8 @@ th {
         left: -280px; /* Hide off-screen */
         transition: 0.4s ease-in-out;
         box-shadow: 10px 0 30px rgba(0,0,0,0.2);
+        margin-top: 50px; /* Align with the mobile nav toggle */
+        text-align: center;
     }
 
     .admin-sidebar.active {
@@ -697,10 +719,11 @@ th {
 }
 @media (max-width: 768px) {
     .hero { 
-        padding: 60px 20px; 
+        padding: 60px 30px; 
     }
     .hero h1 { 
         font-size: clamp(1.5rem, 6vw, 2.5rem); 
+
     }
     .tabs-header { 
         width: 100%; 

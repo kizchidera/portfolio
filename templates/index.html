@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Kizito Okoro | Graphics Designer</title>
+    <title>Kizito Okoro</title>
     <link rel="icon" type="image/x-icon" href="/static/webimage/icon.ico">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
 <body data-theme="light">
 
     <nav class="sticky-nav">
-        <div class="logo"><span class="accent">Kizito.</span>Okoro</div>
+        <div class="logo"><span class="accent">Kizito&thinsp;</span>Okoro</div>
         <div class="nav-actions">
             <button onclick="toggleDarkMode()" id="theme-icon" class="btn-toggle-round">
                 <i class="fas fa-moon"></i>
@@ -34,15 +34,9 @@
                 <span class="line-1">Branding the Future.</span><br>
                 <span class="line-2">Supporting the Present.</span>
             </h1>
-            <p class="hero-subtitle">Visual Designer & Design Strategist</p>
+            <p class="hero-subtitle">Graphics Designer & Tech. Support</p>
         </div>
     </header>
-
-    <section class="title">
-        <div class="title-content">
-            <h1>Design Portfolio</h1>
-        </div>
-    </section>
 
     <div class="main-container">
         <aside class="sidebar glass-card">
@@ -53,23 +47,23 @@
                 <h2>Kizito Okoro</h2>
             </div>
            <div class="social-links">
-                {% if profile.whatsapp %}
-                    <a href="{{ profile.whatsapp }}" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                {% endif %}
-                
                 {% if profile.fb %}
                     <a href="{{ profile.fb }}" target="_blank"><i class="fab fa-facebook"></i></a>
                 {% endif %}
-                
+            
                 {% if profile.ig %}
                     <a href="{{ profile.ig }}" target="_blank"><i class="fab fa-instagram"></i></a>
+                {% endif %}
+
+                {% if profile.whatsapp %}
+                    <a href="{{ profile.whatsapp }}" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 {% endif %}
 
                 {% if profile.linkedin %}
                     <a href="{{ profile.linkedin }}" target="_blank"><i class="fab fa-linkedin"></i></a>
                 {% endif %}
             </div>
-            <p class="bio-text">{{ profile.about or "Visual Brand Identity Specialist & Technical Instructor." }}</p>
+            <p class="bio-text">{{ profile.about or "Graphics Designer & Technical Support Specialist." }}</p>
 
             <div class="skills-section">
                 <h3 class="skills-title">Technical Proficiency</h3>
