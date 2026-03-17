@@ -6,6 +6,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+application = app
 app.secret_key = "derki_visuals_secret_key"
 
 # Folder Configurations
