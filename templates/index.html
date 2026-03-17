@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kizito Okoro | Graphics Designer</title>
+    <link rel="icon" type="image/x-icon" href="/static/webimage/icon.ico">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body data-theme="light">
+
+    <nav class="sticky-nav">
+        <div class="logo"><span class="accent">Kizito.</span>Okoro</div>
+        <div class="nav-actions">
+            <button onclick="toggleDarkMode()" id="theme-icon" class="btn-toggle-round">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-carousel">
+            {% for work in works %}
+                <div class="carousel-item {% if loop.first %}active{% endif %}" 
+                    style="background-image: url('{{ url_for('static', filename='uploads/' + work.media_url) }}');">
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="hero-content">
+            <h1 class="typing-container">
+                <span class="line-1">Branding the Future.</span><br>
+                <span class="line-2">Supporting the Present.</span>
+            </h1>
+            <p class="hero-subtitle">Visual Designer & Design Strategist</p>
+        </div>
+    </header>
+
+    <section class="title">
+        <div class="title-content">
+            <h1>Design Portfolio</h1>
+        </div>
+    </section>
+
+    <div class="main-container">
+        <aside class="sidebar glass-card">
+            <div class="profile-header">
+                <img src="{{ url_for('static', filename='profile_pics/' + profile.profile_pic) if profile.profile_pic else url_for('static', filename='images/default-avatar.jpg') }}" 
+                    alt="Kizito Okoro" 
+                    class="profile-img">
+                <h2>Kizito Okoro</h2>
+            </div>
+           <div class="social-links">
+                {% if profile.whatsapp %}
+                    <a href="{{ profile.whatsapp }}" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                {% endif %}
+                
+                {% if profile.fb %}
+                    <a href="{{ profile.fb }}" target="_blank"><i class="fab fa-facebook"></i></a>
+                {% endif %}
+                
+                {% if profile.ig %}
+                    <a href="{{ profile.ig }}" target="_blank"><i class="fab fa-instagram"></i></a>
+                {% endif %}
+
+                {% if profile.linkedin %}
+                    <a href="{{ profile.linkedin }}" target="_blank"><i class="fab fa-linkedin"></i></a>
+                {% endif %}
+            </div>
+            <p class="bio-text">{{ profile.about or "Visual Brand Identity Specialist & Technical Instructor." }}</p>
+
+            <div class="skills-section">
+                <h3 class="skills-title">Technical Proficiency</h3>
+    
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>Adobe Photoshop</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%;"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                <div class="skill-info">
+                    <span>Adobe Illustrator</span>
+                    <span>80%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 80%;"></div>
+                </div>
+                </div>
+
+                <div class="skill-item">
+                <div class="skill-info">
+                    <span>Adobe InDesign</span>
+                    <span>75%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 75%;"></div>
+                </div>
+                </div>
+            </div>
+
+            <a href="/request-design" class="btn-primary full-width">Request Design</a>
+        </aside>
+
+        <main class="portfolio-section">
+            <div class="tabs-container">
+                <div class="tabs-header glass-card">
+                    <button class="tab-btn active" onclick="filterGallery('Services', this)">Services</button>
+                    <button class="tab-btn" onclick="filterGallery('Logo Designs', this)">Logo Designs</button>
+                    <button class="tab-btn" onclick="filterGallery('Book Designs', this)">Book Designs</button>
+                    <button class="tab-btn" onclick="filterGallery('Flyer Designs', this)">Flyer Designs</button>
+                    <button class="tab-btn" onclick="filterGallery('Advert Design', this)">Advert Design</button>
+                </div>
+            </div>
+
+            <div class="work-grid" id="portfolio-grid">
+                {% for work in works %}
+                <div class="work-card" data-category="{{ work.category }}">
+                    <div class="work-media">
+                        <img src="{{ url_for('static', filename='uploads/' + work.media_url) }}" alt="{{ work.title }}">
+                        </div>
+                    <div class="work-info">
+                        <h3>{{ work.title }}</h3>
+                        <p>{{ work.description }}</p>
+                        <div class="work-footer">
+                            <span class="category-tag">{{ work.category }}</span>
+                            
+                            {% if work.pdf_url and work.pdf_url != "" %}
+                                <a href="{{ url_for('static', filename='pdfs/' + work.pdf_url) }}" target="_blank" class="view-brief">
+                                    <i class="fas fa-file-pdf"></i> Brief
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-content glass-card">
+            <p>Powered by</p>
+            <div class="footer-logo">
+                <img src="{{ url_for('static', filename='webimage/derki_logo.png') }}" alt="Derki Visuals">
+            </div>
+            <div class="footer-copyright">
+                &copy; 2026 Kizito Okoro. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function filterGallery(category, element) {
+            const cards = document.querySelectorAll('.work-card');
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            cards.forEach(card => {
+                card.style.display = (card.getAttribute('data-category') === category) ? 'block' : 'none';
+            });
+        }
+
+        function toggleDarkMode() {
+            const body = document.body;
+            const isDark = body.getAttribute('data-theme') === 'dark';
+            body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            document.querySelector('#theme-icon i').className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const items = document.querySelectorAll('.carousel-item');
+            let currentIndex = 0;
+
+            if (items.length > 1) {
+                items[0].classList.add('active');
+
+                setInterval(() => {
+                    items[currentIndex].classList.remove('active');
+                    currentIndex = (currentIndex + 1) % items.length;
+                    items[currentIndex].classList.add('active');
+                }, 3500); // Updated to match your 3.5s timing
+            }
+        });
+    </script>
+</body>
+</html>

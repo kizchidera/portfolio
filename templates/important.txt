@@ -1,0 +1,7 @@
+           login buton
+           
+            {% if session['logged_in'] %}
+                /* <a href="/admin/dashboard" class="btn-login-pill">Dashboard</a> */
+            {% else %}
+                <a href="/login" class="btn-login-pill">Admin Login</a>
+            {% endif %}
