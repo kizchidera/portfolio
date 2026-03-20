@@ -444,7 +444,7 @@ nav {
     top: 20px;
     right: 20px;
     z-index: 2000;
-    background: var(--primary);
+    background: var(--bg);
     color: white;
     border: none;
     padding: 12px 15px;
@@ -459,15 +459,14 @@ nav {
     gap: 15px;
     padding: 12px 20px;
     border-radius: 25px;
-    color: var(--btntext);
+    color: #ffffff;
     font-weight: 600;
     transition: 0.3s;
 }
 .admin-sidebar .nav-item:hover {
     background: var(--primary);
-    color: var(--btncolor);
+    color: #000000;
 }
-
 .admin-body {
     background-color: var(--bg);
     color: var(--text);
